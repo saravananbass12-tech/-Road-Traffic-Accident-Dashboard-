@@ -1,0 +1,5 @@
+relationship 38cfc37b-e377-42c2-b8b1-21ed6f639fc1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Nepal_Road_Traffic_Accidents.Accident_Date
+	toColumn: LocalDateTable_974dbbb2-94ce-40ad-b511-c494a233a640.Date
+

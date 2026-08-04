@@ -1,0 +1,131 @@
+table Nepal_Road_Traffic_Accidents
+	lineageTag: 8c4a066c-9927-47c4-9d1b-57827cff608b
+
+	column Accident_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: b728e4cd-46b6-413c-b4e4-122d27c9f1b9
+		summarizeBy: count
+		sourceColumn: Accident_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Accident_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7dd89c69-43c7-4e59-ac0e-e96491aa30d9
+		summarizeBy: none
+		sourceColumn: Accident_Date
+
+		variation Variation
+			isDefault
+			relationship: 38cfc37b-e377-42c2-b8b1-21ed6f639fc1
+			defaultHierarchy: LocalDateTable_974dbbb2-94ce-40ad-b511-c494a233a640.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 38d24fac-8d5f-4f58-8e36-bc45f1ef544b
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: 13ce250f-6344-42d8-a210-f2e727ec22cb
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Province
+		dataType: string
+		lineageTag: e8719eb5-848a-4c61-afd2-209e444f425f
+		summarizeBy: none
+		sourceColumn: Province
+
+		annotation SummarizationSetBy = Automatic
+
+	column Road_Type
+		dataType: string
+		lineageTag: f9a32ae6-8568-46e1-803b-4933b1ad5273
+		summarizeBy: none
+		sourceColumn: Road_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Intersection_Type
+		dataType: string
+		lineageTag: 931de041-91e7-4f8a-9715-bf5565f3c7c8
+		summarizeBy: none
+		sourceColumn: Intersection_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_of_Day
+		dataType: string
+		lineageTag: 8d5bd05f-bd4e-4aa8-9bf6-eb6a6f3da755
+		summarizeBy: none
+		sourceColumn: Time_of_Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column Accident_Severity
+		dataType: string
+		lineageTag: cd51131c-2c85-4c09-8652-8a6f3051894a
+		summarizeBy: none
+		sourceColumn: Accident_Severity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weather_Condition
+		dataType: string
+		lineageTag: 24ab9139-74df-4395-b5cb-748eb725fdbf
+		summarizeBy: none
+		sourceColumn: Weather_Condition
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vehicle_Type
+		dataType: string
+		lineageTag: 89242d27-4c25-43e9-8ee1-74b5a55fb4a2
+		summarizeBy: none
+		sourceColumn: Vehicle_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Speed_Zone
+		dataType: int64
+		formatString: 0
+		lineageTag: d3a1c097-679a-4a89-b168-9c248610c0a0
+		summarizeBy: sum
+		sourceColumn: Speed_Zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Driver_Gender
+		dataType: string
+		lineageTag: 10c3ad99-357e-4c28-ac20-086954d761bc
+		summarizeBy: none
+		sourceColumn: Driver_Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Nepal_Road_Traffic_Accidents = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\ELCOT\OneDrive\Desktop\Nepal_Road_Traffic_Accidents.csv"),[Delimiter=",", Columns=15, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Accident_ID", Int64.Type}, {"Accident_Date", type date}, {"Year", Int64.Type}, {"Month", type text}, {"Province", type text}, {"District", type text}, {"Road_Type", type text}, {"Intersection_Type", type text}, {"Time_of_Day", type text}, {"Accident_Severity", type text}, {"Weather_Condition", type text}, {"Road_Surface", type text}, {"Vehicle_Type", type text}, {"Speed_Zone", Int64.Type}, {"Driver_Gender", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Road_Surface", "District"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,20 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Nepal_Road_Traffic_Accidents"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Nepal_Road_Traffic_Accidents
+ref table DateTableTemplate_175c32a5-adc3-4121-ad70-eabcec92c9a0
+ref table LocalDateTable_974dbbb2-94ce-40ad-b511-c494a233a640
+
+ref cultureInfo en-US
+
