@@ -4,8 +4,10 @@
 This Power BI dashboard analyzes Road Traffic Accident data from **2021 to 2026**. It provides interactive visualizations to identify accident trends, severity, vehicle types, road types, weather conditions, and provincial accident patterns.
 
 ## 📊 Dashboard 
+<p align="center">
   <img src="Screenshot image.png" width="800">
-  
+</p>
+
 ## 📊 Dashboard Features
 - Total Accidents KPI
 - Fatal Accidents KPI
